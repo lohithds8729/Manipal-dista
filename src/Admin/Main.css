@@ -1,0 +1,66 @@
+.form-control {
+    font-size: 12px;
+}
+
+.small-font {
+    font-size: 14px;
+}
+.small-fontsize {
+  font-size: 16px;
+  font-display: block;
+  font-weight: bold;
+}
+
+
+.nav-items {
+    color: rgb(62, 118, 134);
+}
+
+.scrollable-table-container {
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  
+  table th, table td {
+    min-width: 150px; /* Adjust this value as needed */
+    text-align: center;
+  }
+  /* .scrollable-table-container {
+    max-height: 400px; 
+    overflow-y: auto;
+    overflow-x: hidden;
+  } */
+  .table thead th {
+    background-color: #4facc8;
+  }
+  .table tfoot th {
+    /* Light background color for table footer */
+    border:0;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center; /* Center align the icons horizontally */
+  }
+  
+  .social-links a {
+    margin: 0 10px; /* Adjust the spacing as needed */
+  }
+  .label-spacing {
+    margin-right: 10px;
+  }
+  .button-group {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .btn-small {
+    font-size: 5px;
+    flex: 1; /* This makes all buttons the same width */
+    margin: 0;
+    padding: 5px;
+  }
+  .full-display {
+    width: 100vw;
+    height: 100vh;
+    background-color: white;
+}
