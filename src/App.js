@@ -31,9 +31,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/user-profile" element={<UserProfileLayout />} />
-          <Route path="/" element={<Login />} />
+          {/* <Route path="/" element={<Login />} /> */}
           <Route
-            path="/admin"
+            path="/"
             element={
                 <Dashboard />
             }

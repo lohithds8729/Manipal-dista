@@ -61,7 +61,7 @@ function Header() {
     <header id="header" className="header fixed-top d-flex align-items-center">
       <div className="d-flex align-items-center justify-content-between">
         <a href="/" className="logo d-flex align-items-center">
-          <img src="./manipal.png" alt="" />
+          <img src="./fitpeo.jpeg" alt="" />
           {/* {/ <span className="d-none d-lg-block">Adani Cement</span> /} */}
         </a>
         <i className="bi bi-list toggle-sidebar-btn" onClick={toggleSidebar} />
@@ -69,12 +69,20 @@ function Header() {
 
       <nav className="header-nav ms-auto">
         <ul className="d-flex align-items-center">
-          <li className="nav-item d-block d-lg-none">
+          <li className="nav-item d-flex">
             <a className="nav-link nav-icon search-bar-toggle " href="/">
               <i className="bi bi-search" />
             </a>
+            <a className="nav-link nav-icon me-3" href="/">
+            <i className="bi bi-bell" />
+          </a>
+          <a className="nav-link nav-icon me-3" href="/">
+            <i className="bi bi-chat-dots" />
+          </a>
+          <a className="nav-link nav-icon me-3" href="/">
+            <i className="bi bi-gear" />
+          </a>
           </li>
-
           <li className="nav-item dropdown pe-3">
             <a
               className="nav-link nav-profile d-flex align-items-center pe-0"

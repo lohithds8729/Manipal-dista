@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Row, Col, Form, Button } from "react-bootstrap";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import relayService from "./AppProviders/Axios/hook";
 import { Line } from "react-chartjs-2";
 import ReactApexChart from 'react-apexcharts';
 import { useNavigate } from 'react-router-dom';
@@ -35,36 +34,41 @@ const MainContent = () => {
     fetchData();
   }, [startDate1, endDate1]);
 
+  // Mock data
+  const mockCdrData = [
+    { callDate: "2024-01-15" },
+    { callDate: "2024-01-20" },
+    { callDate: "2024-02-10" },
+    { callDate: "2024-03-22" },
+    { callDate: "2024-03-28" }
+  ];
+  
+  const mockSuccessData = [
+    { timestamp: "2024-01-15" },
+    { timestamp: "2024-02-10" },
+    { timestamp: "2024-03-22" }
+  ];
+  
+  const mockFailureData = [
+    { createdDate: "2024-01-20" },
+    { createdDate: "2024-03-28" }
+  ];
+
   const fetchData = async () => {
     try {
-      const cdrResponse = await relayService({
-        url: `/dista/fetchcdrdata?startDate=${formattedDate(startDate1)}&endDate=${formattedDate(endDate1)}`,
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      });
-      const syncSuccessResponse = await relayService({
-        url: `/dista/fetchapilogs/success?startDate=${formattedDate(startDate1)}&endDate=${formattedDate(endDate1)}`,
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      });
-      const syncFailureResponse = await relayService({
-        url: `/dista/fetchapilogs/failure?startDate=${formattedDate(startDate1)}&endDate=${formattedDate(endDate1)}`,
-        method: "GET",
-        headers: { "Content-Type": "application/json" }
-      });
+      // Use mock data instead of real API calls
+      const cdrData = mockCdrData;
+      const syncSuccessData = mockSuccessData;
+      const syncFailureData = mockFailureData;
+      const cdrcount = cdrData.length;
+      const successcount = syncSuccessData.length;
+      const failurecount = syncFailureData.length;
 
-      const cdrData = cdrResponse.data.data;
-      const syncSuccessData = syncSuccessResponse.data.data;
-      const syncFailureData = syncFailureResponse.data.data;
-      const cdrcount = cdrResponse.data.count;
-      const successcount = syncSuccessResponse.data.count;
-      const failurecount = syncFailureResponse.data.count;
-
-      setData(cdrData); // Assuming the main data list is from CDR
-      setFilteredData(cdrData); // Filtering data accordingly
+      setData(cdrData);
+      setFilteredData(cdrData);
       setCdr(cdrcount);
       setSuccess(successcount);
-      setFailure(failurecount)
+      setFailure(failurecount);
       updateChartData(cdrData, syncSuccessData, syncFailureData);
       updateApexChartData(cdrData, syncSuccessData, syncFailureData);
 
@@ -220,7 +224,7 @@ const MainContent = () => {
                       <DatePicker selected={startDate1} onChange={date => setStartDate1(date)} className="form-control form-control-sm" />
                     </Col>
                     <Col xs="auto">
-                      <Form.Label className="mr-sm-2 small-font label-spacing">End Date</Form.Label>
+                    <Form.Label className="mr-sm-2 small-font label-spacing">End Date</Form.Label>
                       <DatePicker selected={endDate1} onChange={date => setEndDate1(date)} className="form-control form-control-sm" />
                     </Col>
                     <Col xs="auto">
@@ -269,7 +273,7 @@ const MainContent = () => {
                   <Card.Title style={{ fontSize: '15px', color: 'white' }}>Sync Failure</Card.Title>
                   <div className="d-flex align-items-center">
                     <div className="card-icon rounded-circle d-flex align-items-center justify-content-center">
-                    <i className="bi bi-exclamation-triangle-fill"></i>
+                      <i className="bi bi-exclamation-triangle-fill"></i>
                     </div>
                     <div className="ps-3">
                       <h6 style={{ color: 'white' }}>{failure}</h6>
@@ -324,3 +328,4 @@ const MainContent = () => {
 };
 
 export default MainContent;
+
