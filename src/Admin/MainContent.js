@@ -207,7 +207,7 @@ const MainContent = () => {
   };
 
   return (
-    <main id="main" className="main">
+    <main id="" className="">
       <Container fluid className="small-font">
         <div className="pagetitle d-flex justify-content-between align-items-center">
           <h1 className="font-weight-bold" style={{ fontSize: "16px" }}>Dashboard</h1>

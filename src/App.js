@@ -35,7 +35,7 @@ function App() {
           <Route
             path="/"
             element={
-                <Dashboard />
+                <Login />
             }
           />
           <Route path="/user-profile" element={<UserProfileLayout />} />
