@@ -1,23 +1,23 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../Contexts/AuthContext';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../Contexts/AuthContext";
+import axios from "axios";
 import relayService from "../Admin/AppProviders/Axios/hook";
-import { jwtDecode } from 'jwt-decode';
+import { jwtDecode } from "jwt-decode";
 
 function Header() {
   const { auth, setAuth } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
-  const [userName, setUserName] = useState('');
-  const [user, setUser] = useState('');
+  const [userName, setUserName] = useState("");
+  const [user, setUser] = useState("");
 
   useEffect(() => {
     getUser();
   }, []);
 
   const getUser = async () => {
-    const username = localStorage.getItem('UserName');
+    const username = localStorage.getItem("UserName");
     try {
       const response = await relayService({
         url: `/auth/getUsers?UserName=${username}`,
@@ -35,7 +35,7 @@ function Header() {
   };
 
   const handleLogout = async () => {
-    const user = localStorage.getItem('UserName');
+    const user = localStorage.getItem("UserName");
     try {
       const response = await relayService({
         url: `/auth/logout`,
@@ -49,19 +49,18 @@ function Header() {
         navigate(`/`);
       }
     } catch (error) {
-      console.error('Logout error:', error);
+      console.error("Logout error:", error);
     }
   };
   const toggleSidebar = () => {
-    document.body.classList.toggle('toggle-sidebar');
+    document.body.classList.toggle("toggle-sidebar");
   };
-
 
   return (
     <header id="header" className="header fixed-top d-flex align-items-center">
       <div className="d-flex align-items-center justify-content-between">
         <a href="/" className="logo d-flex align-items-center">
-          <img src="./fitpeo.jpeg" alt="" />
+          <img src="./manipal.png" alt="" />
           {/* {/ <span className="d-none d-lg-block">Adani Cement</span> /} */}
         </a>
         <i className="bi bi-list toggle-sidebar-btn" onClick={toggleSidebar} />
@@ -74,14 +73,14 @@ function Header() {
               <i className="bi bi-search" />
             </a>
             <a className="nav-link nav-icon me-3" href="/">
-            <i className="bi bi-bell" />
-          </a>
-          <a className="nav-link nav-icon me-3" href="/">
-            <i className="bi bi-chat-dots" />
-          </a>
-          <a className="nav-link nav-icon me-3" href="/">
-            <i className="bi bi-gear" />
-          </a>
+              <i className="bi bi-bell" />
+            </a>
+            <a className="nav-link nav-icon me-3" href="/">
+              <i className="bi bi-chat-dots" />
+            </a>
+            <a className="nav-link nav-icon me-3" href="/">
+              <i className="bi bi-gear" />
+            </a>
           </li>
           <li className="nav-item dropdown pe-3">
             <a
@@ -102,7 +101,9 @@ function Header() {
             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
               <li className="dropdown-header">
                 <h6>{userName}</h6>
-                <span>{user === '1' ? 'Admin' : user === '2' ? 'Agent' : ''}</span>
+                <span>
+                  {user === "1" ? "Admin" : user === "2" ? "Agent" : ""}
+                </span>
               </li>
               <li>
                 <hr className="dropdown-divider" />
@@ -111,7 +112,11 @@ function Header() {
                 <hr className="dropdown-divider" />
               </li>
               <li>
-                <a className="dropdown-item d-flex align-items-center" onClick={handleLogout} style={{ cursor: "pointer" }} >
+                <a
+                  className="dropdown-item d-flex align-items-center"
+                  onClick={handleLogout}
+                  style={{ cursor: "pointer" }}
+                >
                   <i className="bi bi-box-arrow-right" />
                   <span>Sign Out</span>
                 </a>
@@ -120,9 +125,7 @@ function Header() {
           </li>
         </ul>
       </nav>
-
     </header>
-
   );
 }
 
